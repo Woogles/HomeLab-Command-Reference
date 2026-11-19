@@ -1040,7 +1040,540 @@ yamllint file.yaml
 # JSON validation
 jq . file.json
 ```
+---
 
+# Strata Troubleshooting Commands
+
+## Verify Strata Installation
+
+### Linux
+
+```bash
+which strata
+```
+
+Shows the installed executable path.
+
+### Verify Version
+
+```bash
+strata --help
+```
+
+or
+
+```bash
+strata version
+```
+
+(if supported)
+
+---
+
+# Process Management
+
+## Find Running Strata Processes
+
+```bash
+ps aux | grep strata
+```
+
+## Find Hermes Processes
+
+```bash
+ps aux | grep hermes
+```
+
+## Kill a Stuck Process
+
+```bash
+kill <PID>
+```
+
+Force kill:
+
+```bash
+kill -9 <PID>
+```
+
+---
+
+# Log Viewing
+
+## Watch Logs Live
+
+```bash
+tail -f logfile.log
+```
+
+## View Last 100 Lines
+
+```bash
+tail -100 logfile.log
+```
+
+## Search Logs
+
+```bash
+grep ERROR logfile.log
+```
+
+```bash
+grep WARNING logfile.log
+```
+
+---
+
+# System Resource Monitoring
+
+## CPU and Memory
+
+```bash
+htop
+```
+
+Install:
+
+```bash
+sudo apt install htop
+```
+
+## Basic Resource Snapshot
+
+```bash
+top
+```
+
+## RAM Usage
+
+```bash
+free -h
+```
+
+## Disk Usage
+
+```bash
+df -h
+```
+
+## Folder Size
+
+```bash
+du -sh *
+```
+
+---
+
+# NVIDIA Troubleshooting
+
+## GPU Status
+
+```bash
+nvidia-smi
+```
+
+## Refresh Every Second
+
+```bash
+watch -n 1 nvidia-smi
+```
+
+## Check Driver Version
+
+```bash
+nvidia-smi --query-gpu=driver_version --format=csv
+```
+
+## GPU Utilization
+
+```bash
+nvidia-smi dmon
+```
+
+---
+
+# AMD Troubleshooting
+
+## GPU Information
+
+```bash
+rocm-smi
+```
+
+## Monitor Live
+
+```bash
+watch -n 1 rocm-smi
+```
+
+## Verify ROCm
+
+```bash
+rocminfo
+```
+
+---
+
+# Network Troubleshooting
+
+## Check Listening Ports
+
+```bash
+sudo ss -tulpn
+```
+
+## Search for API Port
+
+```bash
+sudo ss -tulpn | grep 8000
+```
+
+## Test Local Endpoint
+
+```bash
+curl http://localhost:8000
+```
+
+## Verify DNS
+
+```bash
+nslookup google.com
+```
+
+## Test Connectivity
+
+```bash
+ping 8.8.8.8
+```
+
+---
+
+# Docker Commands
+
+## Running Containers
+
+```bash
+docker ps
+```
+
+## All Containers
+
+```bash
+docker ps -a
+```
+
+## View Logs
+
+```bash
+docker logs <container>
+```
+
+## Follow Logs Live
+
+```bash
+docker logs -f <container>
+```
+
+## Restart Container
+
+```bash
+docker restart <container>
+```
+
+## Enter Container
+
+```bash
+docker exec -it <container> bash
+```
+
+## Resource Usage
+
+```bash
+docker stats
+```
+
+---
+
+# Git Commands
+
+## Pull Latest
+
+```bash
+git pull
+```
+
+## Check Status
+
+```bash
+git status
+```
+
+## View Remote
+
+```bash
+git remote -v
+```
+
+## Current Branch
+
+```bash
+git branch
+```
+
+## Recent History
+
+```bash
+git log --oneline -20
+```
+
+---
+
+# Whisper Troubleshooting
+
+## Verify Installation
+
+```bash
+which whisper
+```
+
+## Check Python Package
+
+```bash
+pip show openai-whisper
+```
+
+## Test Audio File
+
+```bash
+whisper sample.wav
+```
+
+---
+
+# Python Environment
+
+## Python Version
+
+```bash
+python --version
+```
+
+## Installed Packages
+
+```bash
+pip list
+```
+
+## Virtual Environments
+
+```bash
+ls ~/.virtualenvs
+```
+
+## Active Environment
+
+```bash
+which python
+```
+
+---
+
+# Storage Management
+
+## Largest Folders
+
+```bash
+du -h --max-depth=1 | sort -hr
+```
+
+## Largest Files
+
+```bash
+find . -type f -exec du -h {} + | sort -hr | head -20
+```
+
+## SSD Usage
+
+```bash
+df -h
+```
+
+---
+
+# Service Management
+
+## Service Status
+
+```bash
+systemctl status <service>
+```
+
+## Start Service
+
+```bash
+sudo systemctl start <service>
+```
+
+## Stop Service
+
+```bash
+sudo systemctl stop <service>
+```
+
+## Restart Service
+
+```bash
+sudo systemctl restart <service>
+```
+
+## Boot Startup Status
+
+```bash
+systemctl is-enabled <service>
+```
+
+---
+
+# File Searching
+
+## Find Strata Files
+
+```bash
+find / -name "*strata*" 2>/dev/null
+```
+
+## Find YAML Files
+
+```bash
+find . -name "*.yaml"
+```
+
+## Find Campaign*Files
+
+```bash
+find ./*ampaigns -type f
+```
+
+---
+
+* JSON Validation*
+## Validate JSON
+
+```bash
+jq .*file.json
+```
+
+Install*
+
+```bash
+sudo apt install jq
+``*
+
+---
+
+# YAML Validation
+
+```bash
+*amllint file*yaml
+```
+
+Install:
+
+```bash
+sudo*apt install yamllint
+```
+
+---
+
+#*Performance Diagnostics
+
+## CPU*Information
+
+```bash
+l*cpu
+```
+
+## Memory*Information
+
+```bash
+sudo*dmidecode -* memory
+```
+
+## PCI*Devices
+
+```bash
+lspci
+``*
+
+## GPU Detection
+
+```bash
+l*pci | grep VGA
+```
+
+---
+
+# Emergen*y Recovery
+
+## Reboot Server
+
+```b*sh
+sudo reboot
+```
+
+## Shutdown Se*ver
+
+```bash
+sudo shutdown now
+```*
+## Safe Restart of AI Stack
+
+```bash
+docker compose down
+docker compose up -d
+```
+
+or
+
+```bash
+systemctl restart hermes
+systemctl restart strata
+```
+
+---
+
+# Hermes-DM Daily Health Check
+
+```bash
+free -h
+```
+
+```bash
+df -h
+```
+
+```bash
+nvidia-smi
+```
+
+```bash
+docker ps
+```
+
+```bash
+strata connect
+```
+
+Confirm:
+
+- GPU recognized
+- Sufficient free RAM
+- Sufficient SSD space
+- Model loaded
+- API endpoint responding
+- Hermes connected
+- Dashboard reachable
+- OneDrive sync healthy
 ---
 **Project:** Hermes-DM  
 **Runtime:** Strata + Qwen3.8  
